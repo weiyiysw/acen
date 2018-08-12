@@ -1,13 +1,15 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"acen/router"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	app := gin.Default()
-	app.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello World!",
-		})
-	})
+
+	router.Router(&app.RouterGroup)
+
 	app.Run(":9825")
 }
