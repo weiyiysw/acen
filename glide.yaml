@@ -1,4 +1,0 @@
-package: acen
-import:
-- package: github.com/gin-gonic/gin
-  version: origin/master
