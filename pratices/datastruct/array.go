@@ -1,4 +1,4 @@
-package array
+package datastruct
 
 import (
 	"strings"
