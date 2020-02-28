@@ -16,10 +16,10 @@ func Constructor() MyLinkedList {
 }
 
 // Get the value of the index-th node in the linked list. If the index is invalid, return -1.
-func (this *MyLinkedList) Get(index int) int {
+func (list *MyLinkedList) Get(index int) int {
 	res := -1
 	// ignore head node
-	p := this.Next
+	p := list.Next
 	for p != nil && index > 0 {
 		p = p.Next
 		index--
@@ -32,20 +32,20 @@ func (this *MyLinkedList) Get(index int) int {
 }
 
 // AddAtHead add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
-func (this *MyLinkedList) AddAtHead(val int) {
+func (list *MyLinkedList) AddAtHead(val int) {
 	node := &MyLinkedList{val, nil, nil}
-	p := this.Next
+	p := list.Next
 	if p != nil {
 		p.Prev = node
 	}
 	node.Next = p
-	this.Next = node
+	list.Next = node
 }
 
 // AddAtTail Append a node of value val to the last element of the linked list.
-func (this *MyLinkedList) AddAtTail(val int) {
+func (list *MyLinkedList) AddAtTail(val int) {
 	node := &MyLinkedList{val, nil, nil}
-	p := this
+	p := list
 	for p.Next != nil {
 		p = p.Next
 	}
@@ -56,13 +56,13 @@ func (this *MyLinkedList) AddAtTail(val int) {
 // AddAtIndex Add a node of value val before the index-th node in the linked list.
 // If index equals to the length of linked list, the node will be appended to the end of linked list.
 // If index is greater than the length, the node will not be inserted.
-func (this *MyLinkedList) AddAtIndex(index int, val int) {
+func (list *MyLinkedList) AddAtIndex(index int, val int) {
 	// index == 0
 	if index == 0 {
-		this.AddAtHead(val)
+		list.AddAtHead(val)
 		return
 	}
-	p := this.Next
+	p := list.Next
 	for p.Next != nil && index > 1 {
 		p = p.Next
 		index--
@@ -80,11 +80,11 @@ func (this *MyLinkedList) AddAtIndex(index int, val int) {
 }
 
 // DeleteAtIndex Delete the index-th node in the linked list, if the index is valid.
-func (this *MyLinkedList) DeleteAtIndex(index int) {
-	p := this.Next
+func (list *MyLinkedList) DeleteAtIndex(index int) {
+	p := list.Next
 	if index == 0 {
 		if p != nil {
-			this.Next = p.Next
+			list.Next = p.Next
 			p.Next.Prev = nil
 		}
 		return
@@ -114,9 +114,10 @@ func (this *MyLinkedList) DeleteAtIndex(index int) {
 // 	}
 // }
 
-func (this *MyLinkedList) Output() {
+// Output foreach display list
+func (list *MyLinkedList) Output() {
 	// 忽略头结点
-	p := this.Next
+	p := list.Next
 	for p != nil {
 		fmt.Printf("%d \t", p.Val)
 		p = p.Next
@@ -124,6 +125,7 @@ func (this *MyLinkedList) Output() {
 	fmt.Printf("\n")
 }
 
+// Link use for test list
 func Link() {
 	obj := Constructor()
 	obj.AddAtHead(7)
